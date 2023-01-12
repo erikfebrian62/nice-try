@@ -153,7 +153,7 @@
            }
            })
            Toast.fire({
-           icon: 'info',
+           icon: 'success',
            title: '{{ Session::get('notif') }}'
            })
         @endif

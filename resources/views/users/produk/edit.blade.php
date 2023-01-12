@@ -1,32 +1,20 @@
-@extends('users.layouts.main')
-
-@section('content')
-    <div class="card">
-        <div class="my-2 text-center fw-bold">
-            <h1>Tambah Data</h1>
-        </div>
-        <div class="card-body">
-            <form action="{{ route('produk.update'. $product->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="nama_barang" id="floatingInput" placeholder="kkkk" value="{{ $product->nama_barang }}" required>
-                    <label for="floatingInput">Nama barang</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="kategori" id="floatingInput" placeholder="kkk" value="{{ $product->kategori }}" required>
-                    <label for="floatingInput">Kategori</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" value="{{ $product->stok }}" class="form-control" name="stok" id="floatingInput" placeholder="kkk" required>
-                    <label for="floatingInput">Stok</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" value="{{ $product->harga_modal }}" class="form-control" name="harga_modal" id="floatingInput" placeholder="Passsword" required>
-                    <label for="floatingInput">Harga modal</label>
-                </div>
-                <button type="submit" class="btn  btn-success btn-md float-end">Simpan <i class="bi bi-save" ></i></button>
-            </form>
-        </div>
-    </div>
-@endsection
+<input type="hidden"  name="user_id" value="{{ Auth::user()->id }}" id="user_id">
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" name="nama_barang" id="nama_barang" value="{{ $data->nama_barang }}" placeholder="kkkk">
+    <label for="nama_barang">Nama barang</label>
+</div>
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" name="kategori" id="kategori" value="{{ $data->kategori }}" placeholder="kkk">
+    <label for="kategori">Kategori</label>
+</div>
+<div class="form-floating mb-3">
+    <input type="number" class="form-control" name="stok" id="stok" value="{{ $data->stok }}" placeholder="kkk">
+    <label for="stok">Stok</label>
+</div>
+<div class="form-floating mb-3">
+    <input type="number" class="form-control" name="harga_modal" id="harga_modal" value="{{ $data->harga_modal }}" placeholder="kkk">
+    <label for="harga_modal">Harga modal</label>
+</div>
+<div class="form-group">
+    <button type="button" class="btn  btn-warning btn-md float-end" onclick="update({{ $data->id }})">Update <i class="bi bi-send-check" ></i></button>
+</div>

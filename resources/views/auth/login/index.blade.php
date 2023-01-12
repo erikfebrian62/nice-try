@@ -47,7 +47,7 @@
             <p class="auth-description">Silahkan login menggunakan akun anda.<br>Belum mempunyai akun? <a href="{{ route('register.index') }}">Register</a></p>
 
             <div class="auth-credentials">
-                <form action="{{ route('login.proces') }}" method="POST">
+                <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="email" class="shadow-sm form-control @error('email')

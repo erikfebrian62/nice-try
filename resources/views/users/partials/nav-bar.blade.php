@@ -17,7 +17,7 @@
                                 </div>
                             </a>
                             <div class="header-notifications-list">
-                                <a class="dropdown-item" href="{{ route('chat') }}">
+                                <a class="dropdown-item" href="#">
                                     <div class="d-flex align-items-center">
                                         <div class="notify bg-light-info text-info"><i class="bx bx-message-detail"></i>
                                         </div>

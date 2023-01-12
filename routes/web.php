@@ -28,7 +28,7 @@ Route::controller(AuthController::class)->middleware('guest')->group(function ()
 
     //login
     Route::get('login', 'login_index')->name('login.index');
-    Route::post('login', 'login_proces')->name('login.proces');
+    Route::post('login', 'login_proces')->name('login');
 
     //forgot password
     Route::controller(PasswordController::class)->group(function () {
@@ -59,12 +59,13 @@ Route::group(['middleware' => ['auth','auth.session', 'verified']], function(){
     Route::get('dashboard', [MainController::class, 'index'])->name('dashboard');
     Route::get('calculate-profit', [CalculateController::class, 'index'])->name('calculate');
     Route::get('laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
-    Route::prefix('kelola-produk')->name('produk.')->group(function (){
+    Route::prefix('kelola-produk')->name('kelola-produk.')->group(function (){
         Route::get('/', [ProdukController::class, 'index'])->name('index');
+        Route::get('read', [ProdukController::class, 'read'])->name('read');
         Route::get('create', [ProdukController::class, 'create'])->name('create');
-        Route::post('create', [ProdukController::class, 'store'])->name('store');
-        Route::get('{id}/edit', [ProdukController::class, 'edit'])->name('edit');
-        Route::put('{id}', [ProdukController::class, 'update'])->name('update');
+        Route::get('store', [ProdukController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [ProdukController::class, 'edit'])->name('edit');
+        Route::get('update/{id}', [ProdukController::class, 'update'])->name('update');
         Route::get('{id}', [ProdukController::class, 'destroy'])->name('hapus');
     });
 });

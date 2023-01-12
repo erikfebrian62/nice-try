@@ -20,7 +20,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('produk.index') }}">
+            <a href="{{ route('kelola-produk.index') }}">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
                 </div>
                 <div class="menu-title">Kelola Usaha</div>

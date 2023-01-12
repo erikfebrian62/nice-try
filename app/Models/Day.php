@@ -11,5 +11,7 @@ class Day extends Model
     use HasFactory;
     use HashFormatRupiah;
 
-    protected $fillable = ['modal', 'pendapatan'];
+    protected $fillable = [
+        'modal', 
+        'pendapatan'];
 }
