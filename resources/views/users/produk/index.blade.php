@@ -5,8 +5,11 @@
     <a href="#" class="btn btn-primary btn-sm mb-1 shadow" onclick="create()">Tambah Data <i class="bi bi-plus-circle"></i></a>
 </div>
 <div class="card">
-    <div class="card-body" id="read">
-        
+    <div class="card-body">
+      <input type="text" name="search" id="search" class="my-1 col-12 p-2 form-control" placeholder="cari..">
+      <div id="read">
+
+      </div>  
     </div>
 </div>
 @endsection

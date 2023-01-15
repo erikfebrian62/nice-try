@@ -15,7 +15,7 @@ class Product extends Model
         'nama_barang', 
         'kategori', 
         'stok', 
-        'harga_modal'
+        'harga_modal',
     ];
 
     public function user() {

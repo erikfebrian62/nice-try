@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth','auth.session', 'verified']], function(){
     Route::get('laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
     Route::prefix('kelola-produk')->name('kelola-produk.')->group(function (){
         Route::get('/', [ProdukController::class, 'index'])->name('index');
+        Route::get('search', [ProdukController::class, 'search'])->name('search');
         Route::get('read', [ProdukController::class, 'read'])->name('read');
         Route::get('create', [ProdukController::class, 'create'])->name('create');
         Route::get('store', [ProdukController::class, 'store'])->name('store');

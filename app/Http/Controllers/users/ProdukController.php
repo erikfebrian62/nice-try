@@ -24,7 +24,8 @@ class ProdukController extends Controller
     
     public function read(Request $request)
     {
-        $data = Product::where('user_id', Auth::user()->id)->get();
+        $data = Product::where('user_id', Auth::user()->id)->paginate(10);
+
         return view('users.produk.read', [ 'title' => 'kelola-produk'], compact('data'));
     }
 
@@ -111,5 +112,25 @@ class ProdukController extends Controller
     {
         $data = Product::findOrFail($id);
         $data->delete();
+    }
+
+    public function search(Request $request) 
+    {
+
+        $data = Product::where('nama_barang', 'LIKE', '%'.$request->search_string.'%')
+        ->orWhere('kategori', 'LIKE', '%'.$request->search_string.'%')
+        ->orWhere('stok', 'LIKE', '%'.$request->search_string.'%')
+        ->orWhere('harga_modal', 'LIKE', '%'.$request->search_string.'%')
+        ->orderBy('user_id', 'asc')
+        ->paginate(10);
+        
+        if($data->count() >= 1){
+            return view('users.produk.read', ['title' => 'kelola-produk'], compact('data'))->render();
+        }else{
+            return response()->json([
+                'status' => 'Nothing_found'
+            ]);
+        }
+
     }
 }

@@ -119,5 +119,38 @@
         })
     }
 
+    //pagination
+    $(document).on('click','.pagination a', function(e) {
+        e.preventDefault();
+        let page = $(this).attr('href').split('page=')[1]
+        product(page)
+    });
+
+    function product(page) {
+       $.ajax({
+        url:"/kelola-produk/read?page="+page,
+        success:function(data) {
+            $('.table-responsive').html(data);
+        }
+       }) 
+    }
+
+    // search data
+    $(document).on('keyup', function(e) {
+        e.preventDefault();
+        let search_string = $('#search').val();
+        $.ajax({
+            url:"{{ route('kelola-produk.search') }}",
+            type:"get",
+            data:{search_string:search_string},
+            success:function(data){
+                $('.table-responsive').html(data);
+                if(data.status=='Nothing_found') {
+                    $('.table-responsive').html('<span class="text-danger">'+'Data tidak ada'+'</span>')
+                }
+            }
+        });
+    });
+
 </script>
 @endpush

@@ -1,4 +1,4 @@
-<div class="table-responsive" >
+<div class="table-responsive">
     <table class="table table-striped text-center">
         <thead>
             <th>No</th>
@@ -24,4 +24,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $data->links() }}
 </div>
