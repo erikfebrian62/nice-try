@@ -6,7 +6,7 @@
 </div>
 <div class="card">
     <div class="card-body">
-      <input type="text" name="search" id="search" class="my-1 col-12 p-2 form-control" placeholder="cari..">
+      <input type="text" name="search" id="search" class="my-1 col-12 p-2 form-control" placeholder="search..">
       <div id="read">
 
       </div>  

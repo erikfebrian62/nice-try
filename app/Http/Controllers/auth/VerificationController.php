@@ -29,7 +29,6 @@ class VerificationController extends Controller
             event(new Verified($request->user()));
         }
 
-
         return redirect()->intended(RouteServiceProvider::HOME)->with('notif', 'Akun berhasil diverifikasi');
     }       
 

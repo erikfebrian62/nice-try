@@ -21,7 +21,7 @@
                     <!-- Password Reset Token -->
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                    {{-- email --}}
+                    {{-- email --}}   
                     <div class="form-floating mb-3">
                       <input type="email" name="email" id="email" value="{{ old('email', $request->email) }}" class="form-control @error('email')
                       is-invalid
@@ -29,7 +29,7 @@
                       <label for="email">Masukan Email</label>
                       @error('email')
                             {{ $message }}
-                        @enderror
+                      @enderror
                     </div>
 
                     {{-- password --}}

@@ -43,7 +43,7 @@
 
     {{-- span --}}
     <script>
-        @if (Session::has('notif'))
+        @if (Session::has('status'))
         const Toast = Swal.mixin({
            toast: true,
            position: 'top-end',
@@ -57,7 +57,7 @@
            })
            Toast.fire({
            icon: 'success',
-           title: '{{ Session::get('notif') }}'
+           title: '{{ Session::get('status') }}'
            })
         @endif
       </script>

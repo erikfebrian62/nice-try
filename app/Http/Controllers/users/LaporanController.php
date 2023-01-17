@@ -8,6 +8,6 @@ use App\Http\Controllers\Controller;
 class LaporanController extends Controller
 {
     public function index(){
-        return view('users.laporan.index', ['title' => 'Laporan-keuangan']);
+        return view('users.laporan.days');
     }
 }

@@ -21,23 +21,9 @@
         </li>
         <li>
             <a href="{{ route('kelola-produk.index') }}">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
+                <div class="parent-icon"><i class='bx bx-book-open'></i>
                 </div>
                 <div class="menu-title">Kelola Usaha</div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('calculate') }}">
-                <div class="parent-icon"><i class="bx bx-calculator"></i>
-                </div>
-                <div class="menu-title">Calculate Profit</div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('laporan') }}">
-                <div class="parent-icon"><i class="bx bx-file"></i>
-                </div>
-                <div class="menu-title">Laporan</div>
             </a>
         </li>
     </ul>

@@ -7,7 +7,7 @@ use App\Http\Controllers\users\MainController;
 use App\Http\Controllers\users\ProdukController;
 use App\Http\Controllers\auth\PasswordController;
 use App\Http\Controllers\users\LaporanController;
-use App\Http\Controllers\users\CalculateController;
+use App\Http\Controllers\users\KategoriController;
 use App\Http\Controllers\auth\VerificationController;
 
 /*
@@ -57,10 +57,20 @@ Route::controller(VerificationController::class)->group(function () {
 
 Route::group(['middleware' => ['auth','auth.session', 'verified']], function(){
     Route::get('dashboard', [MainController::class, 'index'])->name('dashboard');
-    Route::get('calculate-profit', [CalculateController::class, 'index'])->name('calculate');
+    Route::get('profile', [MainController::class, 'profile'])->name('profile');
+    Route::put('profile/{id}', [MainController::class, 'proces'])->name('profile.proces');
     Route::get('laporan-keuangan', [LaporanController::class, 'index'])->name('laporan');
+    Route::prefix('kategori')->name('kategori.')->group(function (){
+        Route::get('/', [KategoriController::class, 'index'])->name('index');
+        Route::get('create', [KategoriController::class, 'create'])->name('create');
+        Route::post('create', [KategoriController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [KategoriController::class, 'edit'])->name('edit');
+        Route::put('update/{id}', [KategoriController::class, 'update'])->name('update');
+        Route::get('{id}', [KategoriController::class, 'destroy'])->name('destroy');
+    });
     Route::prefix('kelola-produk')->name('kelola-produk.')->group(function (){
         Route::get('/', [ProdukController::class, 'index'])->name('index');
+        Route::get('pdf', [ProdukController::class, 'generatePdf'])->name('pdf');
         Route::get('search', [ProdukController::class, 'search'])->name('search');
         Route::get('read', [ProdukController::class, 'read'])->name('read');
         Route::get('create', [ProdukController::class, 'create'])->name('create');

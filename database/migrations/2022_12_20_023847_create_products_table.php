@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->index('fk_product_to_user');
-            $table->string('nama_barang');
-            $table->string('kategori');
-            $table->string('stok')->nullable();
-            $table->double('harga_modal')->nullable();
+            $table->date('tanggal');
+            $table->foreignId('user_id')->index('fk_product_to_user');
+            $table->foreignId('kategori_id')->index('fk_product_to_categorie');
+            $table->double('modal');
+            $table->string('barang');
+            $table->double('jumlah');
+            $table->double('harga_jual');
+            $table->double('laba');
             $table->timestamps();
         });
     }

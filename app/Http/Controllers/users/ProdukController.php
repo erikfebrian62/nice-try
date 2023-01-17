@@ -4,11 +4,10 @@ namespace App\Http\Controllers\users;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Facades\Validator;
 
 class ProdukController extends Controller
 {
@@ -24,7 +23,9 @@ class ProdukController extends Controller
     
     public function read(Request $request)
     {
-        $data = Product::where('user_id', Auth::user()->id)->paginate(10);
+        $data = Product::where('user_id', Auth::user()->id)
+        ->orderby('tanggal', 'asc')
+        ->paginate(5);
 
         return view('users.produk.read', [ 'title' => 'kelola-produk'], compact('data'));
     }
@@ -36,7 +37,8 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('users.produk.create', [ 'title' => 'kelola produk']);
+        $categori = Categorie::all();
+        return view('users.produk.create', [ 'title' => 'kelola produk'], compact('categori'));
     }
 
     /**
@@ -48,11 +50,14 @@ class ProdukController extends Controller
     public function store(Request $request)
     {   
         $data = [
+            'tanggal' => $request->tanggal,
             'user_id' => $request->user_id,
-            'nama_barang' => $request->nama_barang,
-            'kategori' => $request->kategori,
-            'stok' => $request->stok,
-            'harga_modal' => $request->harga_modal
+            'kategori_id' => $request->kategori_id,
+            'modal' => $request->modal,
+            'barang' => $request->barang,
+            'jumlah' => $request->jumlah,
+            'harga_jual' => $request->harga_jual,
+            'laba' => $request->laba,
         ];
 
         Product::create($data);
@@ -65,8 +70,15 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function generatePdf()
     {
+        $data = Product::where('user_id', Auth::user()->id)-> paginate(10);
+
+        $pdf = app('dompdf.wrapper');
+        
+        $pdf->loadView('users.laporan.days',compact('data'));
+        
+        return $pdf->download('listProduk.pdf');
         
     }
 
@@ -78,8 +90,9 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
-        $data = Product::findOrFail($id);
-        return view('users.produk.edit', [ 'title' => 'kelola-produk'], compact('data'));
+        $product = Product::findOrFail($id);
+        $categori = Categorie::all();
+        return view('users.produk.edit', [ 'title' => 'kelola-produk'], compact('product', 'categori'));
     }
 
     /**
@@ -93,12 +106,14 @@ class ProdukController extends Controller
     {
         $data = Product::findOrFail($id);
 
+        $data->tanggal = $request->tanggal;
         $data->user_id = $request->user_id;
-        $data->nama_barang = $request->nama_barang;
-        $data->kategori = $request->kategori;
-        $data->stok = $request->stok;
-        $data->harga_modal = $request->harga_modal;
-        
+        $data->kategori_id = $request->kategori_id;
+        $data->modal = $request->modal;
+        $data->barang = $request->barang;
+        $data->jumlah = $request->jumlah;
+        $data->harga_jual = $request->harga_jual;
+        $data->laba = $request->laba;
         $data->save();
     }
 
@@ -117,12 +132,13 @@ class ProdukController extends Controller
     public function search(Request $request) 
     {
 
-        $data = Product::where('nama_barang', 'LIKE', '%'.$request->search_string.'%')
-        ->orWhere('kategori', 'LIKE', '%'.$request->search_string.'%')
-        ->orWhere('stok', 'LIKE', '%'.$request->search_string.'%')
-        ->orWhere('harga_modal', 'LIKE', '%'.$request->search_string.'%')
-        ->orderBy('user_id', 'asc')
-        ->paginate(10);
+        $data = Product::where('modal', 'LIKE', '%'.$request->search_string.'%')
+        ->orWhere('barang', 'LIKE', '%'.$request->search_string.'%')
+        ->orWhere('jumlah', 'LIKE', '%'.$request->search_string.'%')
+        ->orWhere('harga_jual', 'LIKE', '%'.$request->search_string.'%')
+        ->orWhere('laba', 'LIKE', '%'.$request->search_string.'%')
+        ->orderBy('tanggal', 'asc')
+        ->paginate(5);
         
         if($data->count() >= 1){
             return view('users.produk.read', ['title' => 'kelola-produk'], compact('data'))->render();

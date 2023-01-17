@@ -16,7 +16,7 @@
         $.get("{{ route('kelola-produk.create') }}", {}, function(data, status) {
             $("#exampleModalLabel").html('Tambah Produk');
             $("#page").html(data);
-            $("#exampleModal").modal('show');  
+            $("#exampleModal").modal('show');
         });
     }
 
@@ -26,11 +26,14 @@
             url:"{{ route('kelola-produk.store') }}",
             type:"get",
             data: {
+                tanggal : $('#tanggal').val(),
                 user_id : $('#user_id').val(),
-                nama_barang : $('#nama_barang').val(),
-                kategori : $('#kategori').val(),
-                stok : $('#stok').val(),
-                harga_modal : $('#harga_modal').val()
+                kategori_id : $('#kategori_id').val(),
+                modal : $('#modal').val(),
+                barang : $('#barang').val(),
+                jumlah : $('#jumlah').val(),
+                harga_jual : $('#harga_jual').val(),
+                laba : $('#laba').val(),
             },
                 success: function(data) {
                     $(".btn-close").click();
@@ -54,11 +57,14 @@
                 url:"{{ url('/kelola-produk/update') }}/" + id,
                 type:"get",
                 data: {
+                    tanggal : $('#tanggal').val(),
                     user_id : $('#user_id').val(),
-                    nama_barang : $('#nama_barang').val(),
-                    kategori : $('#kategori').val(),
-                    stok : $('#stok').val(),
-                    harga_modal : $('#harga_modal').val()
+                    kategori_id : $('#kategori_id').val(),
+                    modal : $('#modal').val(),
+                    barang : $('#barang').val(),
+                    jumlah : $('#jumlah').val(),
+                    harga_jual : $('#harga_jual').val(),
+                    laba : $('#laba').val(),
                 },
                     success: function(data) {
                         $(".btn-close").click();
@@ -91,11 +97,14 @@
                 url:"{{ url('/kelola-produk/') }}/" + id,
                 type:"get",
                 data: {
+                    tanggal : $('#tanggal').val(),
                     user_id : $('#user_id').val(),
-                    nama_barang : $('#nama_barang').val(),
-                    kategori : $('#kategori').val(),
-                    stok : $('#stok').val(),
-                    harga_modal : $('#harga_modal').val()
+                    kategori_id : $('#kategori_id').val(),
+                    modal : $('#modal').val(),
+                    barang : $('#barang').val(),
+                    jumlah : $('#jumlah').val(),
+                    harga_jual : $('#harga_jual').val(),
+                    laba : $('#laba').val(),
                 },
                     success: function(data) {
                         read()

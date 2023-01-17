@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
-use app\Traits\HasFormatRupiah;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Day extends Model
+class Categorie extends Model
 {
     use HasFactory;
-    use HasFormatRupiah;
 
     protected $fillable = [
-        'modal', 
-        'pendapatan'];
+        'kategori'
+    ];
+
+
+
+    public function product() {
+        return $this->hasMany(Product::class);
+    }
 }
