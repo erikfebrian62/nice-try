@@ -15,7 +15,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $data = Categorie::orderBy('kategori', 'asc')->paginate(1);
+        $data = Categorie::orderBy('kategori', 'asc')->paginate(5);
         return view('users.kategori.index', [ 'title' => 'Categori'], compact('data'));
     }
 

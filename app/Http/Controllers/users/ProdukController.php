@@ -24,7 +24,7 @@ class ProdukController extends Controller
     public function read(Request $request)
     {
         $data = Product::where('user_id', Auth::user()->id)
-        ->orderby('tanggal', 'asc')
+        ->orderby('tanggal', 'desc')
         ->paginate(5);
 
         return view('users.produk.read', [ 'title' => 'kelola-produk'], compact('data'));
@@ -132,12 +132,13 @@ class ProdukController extends Controller
     public function search(Request $request) 
     {
 
-        $data = Product::where('modal', 'LIKE', '%'.$request->search_string.'%')
+        $data = Product::where('tanggal', 'LIKE', '%'.$request->search_string.'%')
+        ->orWhere('modal', 'LIKE', '%'.$request->search_string.'%')
         ->orWhere('barang', 'LIKE', '%'.$request->search_string.'%')
         ->orWhere('jumlah', 'LIKE', '%'.$request->search_string.'%')
         ->orWhere('harga_jual', 'LIKE', '%'.$request->search_string.'%')
         ->orWhere('laba', 'LIKE', '%'.$request->search_string.'%')
-        ->orderBy('tanggal', 'asc')
+        ->orderBy('tanggal', 'desc')
         ->paginate(5);
         
         if($data->count() >= 1){

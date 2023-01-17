@@ -16,19 +16,19 @@
     </select>
 </div>
 <div class="form-floating mb-3">
-    <input type="text" class="form-control" name="modal" id="modal" placeholder="kkkk">
+    <input type="number" class="form-control" name="modal" id="modal" placeholder="kkkk">
     <label for="modal">Modal</label>
 </div>
 <div class="form-floating mb-3">  
-    <input type="textarea" class="form-control" name="jumlah" id="jumlah" placeholder="kkk">
+    <input type="number" class="form-control" name="jumlah" id="jumlah" placeholder="kkk">
     <label for="jumlah">Jumlah Barang</label>
 </div>
 <div class="form-floating mb-3">  
-    <input type="textarea" class="form-control" name="harga_jual" id="harga_jual" placeholder="kkk">
+    <input type="number" class="form-control" name="harga_jual" id="harga_jual" placeholder="kkk">
     <label for="harga_jual">Harga Jual</label>
 </div>
 <div class="form-floating mb-3">
-    <input type="text" class="form-control" name="laba" id="laba" placeholder="kkk">
+    <input type="number" class="form-control" name="laba" id="laba" placeholder="kkk">
     <label for="laba">Laba</label>
 </div>
 <div class="form-group">

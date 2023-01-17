@@ -7,9 +7,12 @@
          <div class="card-body">
              <div class="d-flex align-items-center">
                  <div>
-                     <p class="mb-0 text-secondary">Modal Hari Ini</p>
-                     <h4 class="my-1 text-info">{{ $data->sum('modal') }}</h4>
-                     <p class="mb-0 font-13">+2.5% from last day</p>
+                     <p class="mb-0 text-secondary">Capital</p>
+                     <h4 class="my-1 text-info">Rp {{ $data->sum('modal') }}</h4>
+                        @php
+                            $day = date('D');
+                        @endphp
+                     <p class="mb-0 font-13">From {{ $day }}</p>
                  </div>
                  <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-wallet'></i>
                  </div>
@@ -22,9 +25,12 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div>
-                    <p class="mb-0 text-secondary">Keuntungan Hari Ini</p>
-                    <h4 class="my-1 text-success">Rp 84,245</h4>
-                    <p class="mb-0 font-13">+5.4% from last day</p>
+                    <p class="mb-0 text-secondary">Net Profit</p>
+                    <h4 class="my-1 text-success">Rp {{ $data->sum('laba') }}</h4>
+                    @php
+                        $day = date('D');
+                    @endphp
+                    <p class="mb-0 font-13">From {{ $day }}</p>
                 </div>
                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-dollar-circle'></i>
                 </div>
@@ -37,9 +43,12 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div>
-                    <p class="mb-0 text-secondary">Keuntungan Bulanan</p>
-                    <h4 class="my-1 text-danger">Rp 34.6%</h4>
-                    <p class="mb-0 font-13">-4.5% from last Month</p>
+                    <p class="mb-0 text-secondary">Net Profit</p>
+                    <h4 class="my-1 text-danger">Rp {{ $month->sum('laba') }}</h4>
+                    @php
+                        $month = date('M');
+                    @endphp
+                    <p class="mb-0 font-13">From Month {{ $month }}</p>
                 </div>
                 <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
                 </div>
@@ -52,9 +61,12 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div>
-                    <p class="mb-0 text-secondary">Keuntungan Tahunan</p>
-                    <h4 class="my-1 text-warning">Rp 8.4K</h4>
-                    <p class="mb-0 font-13">+8.4% from last Year</p>
+                    <p class="mb-0 text-secondary">Net Profit</p>
+                    <h4 class="my-1 text-warning">Rp {{ $year->sum('laba') }}</h4>
+                    @php
+                        $year = date('Y');
+                    @endphp
+                    <p class="mb-0 font-13">From Year {{ $year }}</p>
                 </div>
                 <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-bar-chart-alt-2'></i>
                 </div>

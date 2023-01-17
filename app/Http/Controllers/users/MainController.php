@@ -5,6 +5,7 @@ namespace App\Http\Controllers\users;
 use App\Models\User;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,9 @@ use Illuminate\Support\Facades\File;
 class MainController extends Controller
 {
     public function index(){
-        $data = Product::orderBy('tanggal', 'asc')->get();
+        $data = Product::whereDate('tanggal', now())->get();
+        $month = Product::whereMonth('tanggal', now())->get();
+        $year = Product::whereYear('tanggal', now())->get();
 
         $laba = Product::select(DB::raw("CAST(SUM(laba) as double) as laba"))
         ->GroupBy(DB::raw("Month(tanggal)"))
@@ -25,7 +28,7 @@ class MainController extends Controller
         ->orderBy('tanggal', 'asc')
         ->pluck('bulan');
 
-        return view('users.dashboard.index', ['title' => 'Dashboard'], compact('data', 'laba', 'bulan'));
+        return view('users.dashboard.index', ['title' => 'Dashboard'], compact('data', 'month', 'year', 'laba', 'bulan'));
     }
 
     public function profile(){

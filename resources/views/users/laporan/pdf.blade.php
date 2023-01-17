@@ -28,19 +28,23 @@
 </head>
 <body>
 
-<table id="customers">
+<table id="customers" class="text-center">
   <tr>
-    <th>No</th>
+    <th>Tanggal</th>
     <th>Modal</th>
-    <th>Keperluan</th>
-    <th>Pemasukan</th>
+    <th>Nama Barang</th>
+    <th>Kategori</th>
+    <th>Harga Jual</th>
+    <th>Laba</th>
   </tr>
   @foreach ($data as $item)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->modal }}</td>
-                    <td>{{ $item->keperluan }}</td>
-                    <td>{{ $item->pemasukan }}</td>
+                    <td>{{ $item->tanggal }}</td>
+                    <td>{{ $item->formatRupiah('modal') }}</td>
+                    <td>{{ $item->barang }}</td>
+                    <td>{{ $item->kategori->kategori }}</td>
+                    <td>{{ $item->formatRupiah('harga_jual') }}</td>
+                    <td>{{ $item->formatRupiah('laba') }}</td>
                 </tr>
   @endforeach
 </table>
